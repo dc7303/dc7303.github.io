@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "실리콘밸리를 그리다"
-subtitle: 유호현, 김혜진, 박정리, 송창걸, 이종호 저
 date: 2019-06-23 10:00:00
-background: '/img/book/sillyconVally.jpg'
-category: book
-tag: book
+category:
+- book
+tag:
+- book
 comments: true
 ---
 

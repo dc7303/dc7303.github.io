@@ -1,11 +1,12 @@
 ---
 layout: post
 title: "[Python]메모리 관리"
-subtitle: Reference Counts? Python GC?
 date: 2019-08-06 10:00:00
-background: '/img/posts/06.jpg'
 category: python
-tag: python, gc, ceference counting
+tag: 
+- python
+- gc
+- reference counting
 comments: true
 ---
 ### 들어가기 앞서

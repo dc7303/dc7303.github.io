@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "[JS]호이스팅과 스코프"
-subtitle: 자바스크립트의 스코프는 특별하다
 date: 2019-08-14 01:00:00
-background: '/img/posts/06.jpg'
-category: javascript
-tag: javscript
+category:
+- javascript
+tag:
+- javscript
 comments: true
 ---
 ### 스코프란?

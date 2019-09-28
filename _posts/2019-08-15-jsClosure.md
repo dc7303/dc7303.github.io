@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "[JS]클로저(Closure)"
-subtitle: 폐쇄?
 date: 2019-08-15 12:00:00
-background: '/img/posts/06.jpg'
-category: javascript
-tag: javscript
+category:
+- javascript
+tag:
+- javscript
 comments: true
 ---
 ### 읽기전

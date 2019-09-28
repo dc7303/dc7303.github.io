@@ -1,11 +1,12 @@
 ---
 layout: post
 title: "[Java]smtp 배포서버에서 동작을 안한다면?"
-subtitle: 로컬에서 작동했는데.. 억울하다..
 date: 2019-07-22 10:00:00
-background: '/img/posts/06.jpg'
-category: java
-tag: java, smtp,
+category: 
+- java
+tag: 
+- java
+- smtp
 comments: true
 ---
 ### 문서의 목적

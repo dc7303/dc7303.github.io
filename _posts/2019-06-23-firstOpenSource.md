@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "나의 첫 오픈 소스기여"
-subtitle: 오픈소스에 기여하는건 매우 값진 경험이였다.
 date: 2019-06-23 15:00:00
-background: '/assets/images/post/06.jpg'
-category: story
-tag: story
+category:
+- story
+tag:
+- story
 comments: true
 ---
 
