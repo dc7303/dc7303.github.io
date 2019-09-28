@@ -3,7 +3,7 @@ layout: post
 title: "나의 첫 오픈 소스기여"
 subtitle: 오픈소스에 기여하는건 매우 값진 경험이였다.
 date: 2019-06-23 15:00:00
-background: '/img/posts/06.jpg'
+background: '/assets/images/post/06.jpg'
 category: story
 tag: story
 comments: true
@@ -23,11 +23,11 @@ comments: true
 ### 초장부터 에러냐?
 오픈소스를 설치하고 컴포넌트에 적용하여 serve를 시도했지만 트랜스파일링 단계에서 에러가 발생합니다.
 
-![consoleErr](/img/posts/ngx-error.png){: width="100%"}*\<콘솔 에러 메세지\>*
+![consoleErr](/assets/images/post/ngx-error.png){: width="100%"}*\<콘솔 에러 메세지\>*
 
 위와같이 TuiEditor 타입을 찾을 수 없다는 것이였습니다. 저는 바로 에러에서 알려주는 경로로 들어가 원인을 분석했습니다. 
 
-![codeErr](/img/posts/ngx-code.png){: width="100%"}*\<에러의 원인인 라이브러리 내부의 index.ts 파일\>*
+![codeErr](/assets/images/post/ngx-code.png){: width="100%"}*\<에러의 원인인 라이브러리 내부의 index.ts 파일\>*
 
 프로젝트 index.ts파일에서 발생했습니다. 제 추측으로는 개발자가 tui-editor를 import 하는 과정에서 TuiEditor객체를 타입으로 선언한게 문제를 일으킨 것 같습니다. 
 
@@ -46,7 +46,7 @@ comments: true
 tui-editor를 쓰기로 한 이상 viewer 또한 TOAST에서 제공하는 오픈소스를 적용하고 싶었습니다. 하지만 ngx-tui-editor는 tui-viewer를 불러오는 기능은 구현하지 않았더라고요.. 하.....
 
 
-![tuiCodeJs](/img/posts/crying.jpg){: width="100%"}*\<좀 해놓지...\>*
+![tuiCodeJs](/assets/images/post/crying.jpg){: width="100%"}*\<좀 해놓지...\>*
 
 
 그래서 제가 직접 그 기능을 간편하게 불러올 수 있도록 수정하기로 합니다. tui-editor에서 제공하는 document를 살펴보면서 TuiEditor의 viewer를 불러올 수 있는 static method인 factory() 메소드를 찾게됩니다. 그리고 ngx-tui-editor를 불러올때 옵션 플래그 값을 추가하여 factory()함수를 사용할 수 있도록 수정했습니다.  
@@ -98,15 +98,15 @@ fucntion(options) {
 입사한 지 안된 신입개발자에겐 기대보다 걱정이 컸습니다. 이유는 내가 짠 코드가 마음에 안 들면 어쩌지? 불필요한 기능인가? 더 큰 버그를 만들어내면 어쩌지? 등 아직 제 코드에 대한 자신감이 없을 시기였기 때문인 것 같습니다. 
 
 ### 첫 Pull Request 시도하다
-![pullReq](/img/posts/pull-req.png){: width="100%"}*\<Pull Request 내용 [(링크)](https://github.com/tylernhoward/ngx-tui-editor/pull/9)\>*
+![pullReq](/assets/images/post/pull-req.png){: width="100%"}*\<Pull Request 내용 [(링크)](https://github.com/tylernhoward/ngx-tui-editor/pull/9)\>*
 
 
-![pullReqCode](/img/posts/pull-req-code-change.png){: width="100%"}*\<변경된 코드 [(링크)](https://github.com/tylernhoward/ngx-tui-editor/commit/b2947794388eefed7080847b7bc013944b4e85e0)\>*
+![pullReqCode](/assets/images/post/pull-req-code-change.png){: width="100%"}*\<변경된 코드 [(링크)](https://github.com/tylernhoward/ngx-tui-editor/commit/b2947794388eefed7080847b7bc013944b4e85e0)\>*
 
 이미지에서 보면 제게 얼마나 조심스러운 일이었는지 알 수 있습니다. Pull Request 글에서 보면 'And before you review this, please understand my lack of English.'라고 수줍게 부족한 영어 실력을 이해해달라는 쓸데없는 소리를 하는 걸 보면 느끼실 겁니다.
 
 ### 반영되다
-![pullReqCommit](/img/posts/pull-req-commit-img.png){: width="100%"}*\<커밋된 제 코드 [(링크)](https://github.com/tylernhoward/ngx-tui-editor/commits/master)\>*
+![pullReqCommit](/assets/images/post/pull-req-commit-img.png){: width="100%"}*\<커밋된 제 코드 [(링크)](https://github.com/tylernhoward/ngx-tui-editor/commits/master)\>*
 
 이틀을 기다리니 제 요청이 반영된 걸 확인할 수 있었습니다. 지금 생각하면 별거 아니지만 이때는 이 세상에 엄청난 기여를 한 것 같은 기분이었습니다.
 

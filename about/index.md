@@ -3,4 +3,4 @@ layout: page
 type: about
 ---
 
-Building...
+호기심 많은 개발자입니다.
