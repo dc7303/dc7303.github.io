@@ -9,11 +9,10 @@ tag:
 comments: true
 ---
 
+유호현, 김혜진, 박정리, 송창걸, 이종호 저  
+평점:★★★☆☆
 
-# 실리콘 밸리를 그리다 
-##### 유호현, 김혜진, 박정리, 송창걸, 이종호 저
 --- 
-##### 평점:★★★☆☆
 
 ![book_img](/assets/images/post/sillycon_vally_book.jpg){: width="100%" hight="300"}*\<실리콘밸리를 그리다 표지 디자인\>*
 

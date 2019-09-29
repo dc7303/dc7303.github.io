@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[Python]메모리 관리"
+title: "[Python]파이썬의 메모리 관리"
 date: 2019-08-06 10:00:00
 category: python
 tag: 
@@ -9,8 +9,9 @@ tag:
 - reference counting
 comments: true
 ---
-### 들어가기 앞서
-인스타그램이 GC를 사용하지 않은 뒤 성능이 10%정도 향상 됐다는 글을 봤습니다. GC가 어떻게 동작하는지 궁굼하기도 했고 평소 파이썬으로 프로그래밍 하는 걸 좋아하기 때문에(필자는 자바 개발자..) 깊게 이해해보고 싶어 정리하게 됐습니다.
+
+인스타그램이 GC를 사용하지 않은 뒤 성능이 10%정도 향상 됐다는 글을 봤습니다. GC가 어떻게 동작하는지 궁굼하기도 했고 평소 파이썬으로 프로그래밍 하는 걸 좋아하기 때문에 깊게 이해해보고 싶어 정리하게 됐습니다.
+이 글은 파이썬의 가비지 컬렉션(GC)을 정리한 문서와 Cpython 오픈 소스 분석을 통해 정리되었습니다.
 
 ### 파이썬은 메모리 관리를 어떻게 하는가?
 파이썬은 C 또는 C++과 같이 프로그래머가 직접 메모리를 관리하지 않고 레퍼런스 카운트(Reference Counts)와 가비지 콜렉션(Automatic Garbage Collection)에 의해 관리됩니다.
@@ -101,7 +102,7 @@ static inline void _Py_DECREF(const char *filename, int lineno,
 
 이렇게 파이썬은 기본적으로 레퍼런스 카운트를 통해 메모리를 관리합니다. 레퍼런스 카운트는 메모리 관리에 매우 효율적으로 동작하지만, 레퍼런스 카운트만으로 메모리를 관리했을 때 약점이 있습니다.
 
-### 순환 참조
+### 레퍼런스 카운트의 약점 순환 참조
 순환 참조란 간단하게 컨테이너 객체가 자기 자신을 참조하는 것을 말합니다. 자기 자신이 참조될 때 프로그래머는 할당된 객체를 추적하기 어려워지고, 이때 메모리 누수가 발생할 수 있습니다. 아래 예제 코드를 보겠습니다.
 
 
@@ -157,33 +158,22 @@ destroy 2110595412432
 파이썬은 이 문제를 가비지 콜렉션으로 해결합니다. 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ### 가비지 콜렉션(Automatic Garbage Collection)
+#### 레퍼런스 카운트도 가비지 콜렉션이다
 설명에 들어가기에 앞서 알아두셔야 하는 것은 레퍼런스 카운트도 가비지 콜렉션이(GC)라고 부릅니다. 이를 구분하기 위해서 순환 참조 이슈를 해결하기 위해 구현한 가비지 콜렉션을 'Automatic garbage collection'이라고 부릅니다. ([Python Doc 1.10.Reference Counts](https://docs.python.org/ko/3/extending/extending.html#reference-counts))
 
 파이썬에서는 [Cyclic Garbage Collection](https://docs.python.org/3/c-api/gcsupport.html)을 지원합니다. 이는 순환 참조 이슈를 해결하기 위해 존재하며, 참조 주기를 감지하여 메모리 누수를 예방합니다.
 
-### Generational Hypothesis
+
+#### Generational Hypothesis
 가비지 콜렉션은 Generational Hypothesis라는 가설을 기반으로 작동합니다. 이 가설은 '대부분의 객체는 생성되고 오래 살아남지 못하고 곧바로 버려지는 것'과 '젊은 객체가 오래된 객체를 참조하는 상황은 드물다'는 2가지 가설입니다.
 
 이 가설을 기반으로 메모리에 존재하는 객체를 오래된 객체(old)와 젊은 객체(young)로 나눌 수 있는데, 대부분의 객체는 생성되고 곧바로 버려지기 때문에 젊은 객체에 비교적 더 많이 존재한다고 볼 수 있습니다.
 
 즉, Generational Hypothesis를 기반으로 작동한다는 것은 젊은 객체에 대부분의 객체가 존재하니, 가비지 컬렉터가 작동 빈도수를 높여 젊은 객체 위주로 관리해주는 것입니다.
 
-### 세대관리
+
+#### 세대관리
 파이썬은 객체 관리를 위한 영역을 3가지로 나뉩니다. 이 영역을 세대(generation)라고 합니다. 파이썬에서 세대를 초기화할 때 아래의 [_PyGC_Initialize](https://github.com/python/cpython/blob/bf8162c8c45338470bbe487c8769bba20bde66c2/Modules/gcmodule.c#L129) 메소드를 호출하는데 3세대를 초기화하는 걸 확인할 수 있습니다.
 
 
@@ -237,7 +227,7 @@ OUTPUT:
 
 0세대의 살아남은 객체는 다음 1세대로 옮겨지고 1세대의 카운트(count)는 1 증가합니다. 이런 방식으로 젊은 세대(young)에서 임계 값이 초과하면 오래된 세대(old)로 위임하는 방식으로 3세대 영역으로 관리됩니다.
 
-### 좀 더 자세히
+#### 좀 더 자세히
 파이썬은 객체가 생성될 때 [_PyObject_GC_Alloc](https://github.com/python/cpython/blob/master/Modules/gcmodule.c#L1934) 메소드를 호출합니다.
 
 ```cpp
@@ -331,7 +321,7 @@ collect_with_callback(struct _gc_runtime_state *state, int generation)
 
 이후 도달 가능한 객체들은 다음 세대 리스트와 병합되고, 도달할 수 없는 객체들은 메모리에서 제거됩니다. 이런 메커니즘을 **순환 참조 알고리즘**이라고 합니다.
 
-### 컨테이너 순회는 어떻게 할까?
+#### 컨테이너 순회는 어떻게 할까?
 
 가비지 컬렉션이 발생할때 컨테이너들을 순회할 수 있는 이유는 파이썬에서 관리되는 각 [gc_generation](https://github.com/python/cpython/blob/master/Include/internal/pycore_pymem.h#L97)[N]은 [PyGC_Head]((https://github.com/python/cpython/blob/master/Include/cpython/objimpl.h#L46)) 타입의 head 프로퍼티를 포함하고 있습니다. head는 아래 코드와 같이 구현되어 있습니다.
 
