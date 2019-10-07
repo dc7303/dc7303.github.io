@@ -22,11 +22,11 @@ google smtp를 사용하여 기능 구현하던 중 구글 계정에서 발생�
 ### MailAuthenticationExeption
 메일전송이 실패하여 서버쪽 로그를 확인해보니.. 아래 이미지와 같이 MailAuthenticationExeption이 발생했습니다.
 
-![mailAuthFail](/img/posts/java/mail-authentication-exception.png){: width="100%" }*\<MailAuthenticationException\>*
+![mailAuthFail](/assets/images/post/mail-authentication-exception.png){: width="100%" }*\<MailAuthenticationException\>*
 
 문제 해결을 위해 로그에서 안내하는 [(https://support.google.com/mail/answer/78754)](https://support.google.com/mail/answer/78754)에 접속해봅니다.
 
-![googleMailAnswer](/img/posts/java/google-mail-answer.png){: width="100%" }*\<구글 클라이언트 접속 문제 가이드\>*
+![googleMailAnswer](/assets/images/post/google-mail-answer.png){: width="100%" }*\<구글 클라이언트 접속 문제 가이드\>*
 
 접속해보면 이메일 클라이언트 접속이 안될때 가이드해주는 문서가 나타납니다. 개발중 MailAuthenticationException발생하면 이 가이드를 따라가면 좋을 것 같습니다.
 
@@ -34,7 +34,7 @@ google smtp를 사용하여 기능 구현하던 중 구글 계정에서 발생�
 
 ### 문제해결
 
-![authBlock](/img/posts/java/auth-block.png){: width="100%" }*\<차단 당했구나..\>*
+![authBlock](/assets/images/post/auth-block.png){: width="100%" }*\<차단 당했구나..\>*
 
 구글 계정을 살펴보던 중 최근 발생한 이벤트가 있길래 확인해보니 IDC 주소의 테스트 시간대 정보가... 
 
