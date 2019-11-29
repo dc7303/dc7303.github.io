@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "[Python] 크롤링으로 업무 자동화하기 - (1)개요"
-date: 2019-11-24 10:00:00
+date: 2019-11-25 10:00:00
 category: python
 tag: 
 - python
