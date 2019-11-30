@@ -107,7 +107,11 @@ $ gvm use go1.13.4
 
 이렇게 설치하고 나면 설치가 성공하는걸 확인할 수 있을 것이다.
 
-에러가 발생한 원인은 go1.4 버전은 오래되었고, 현재 맥OS 버전과 맞지 않아 발생한 것으로 예상된다. 다른 사례를 찾아보면 Docker Desktop for Mac에서도 [동일한 증상](https://stackoverflow.com/questions/48950249/docker-fails-with-on-macos-sierra-with-mspanlist-insert-0x8f1000-0x81d2db0339-0)이 발생하는 것을 확인할 수 있었다. 그리고 이 이슈의 원인은 Docker Desktop for Mac은 MacOS X Sierra 10.12+에서만 지원하기 때문에 이하 버전은 호환이 안되어 발생한 것임을 알 수 있다.
+에러가 발생한 원인은 go1.4 버전은 오래되었고, 현재 맥OS 버전과 맞지 않아 발생한 것으로 예상된다.
+다른 사례를 찾아보면 Docker Desktop for Mac에서도 [동일한 증상](https://stackoverflow.com/questions/48950249/docker-fails-with-on-macos-sierra-with-mspanlist-insert-0x8f1000-0x81d2db0339-0)이 발생하는 사례를 확인할 수 있었다.
+이 이슈는 Docker Desktop for Mac이 특정 버전 이상의 고랭을 요구하는 것에서 발생한 것임을 알 수 있다.  
+(Docker Desktop for Mac은 `OS X Sierra 10.12` 이상을 요구한다. 그리고 `OS X Sierra 10.12`의 고랭 초기 지원 버전은 `go1.7.1 **`이다.)
 
 ### Reference
 [gvm issues #264](https://github.com/moovweb/gvm/issues/264)
+[고랭 버전 호환](https://github.com/golang/go/wiki/Darwin)
