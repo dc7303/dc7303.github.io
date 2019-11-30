@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[Java]smtp 배포서버에서 동작을 안한다면?"
+title: "[Java] smtp 배포서버에서 동작을 안한다면?"
 date: 2019-07-22 10:00:00
 category: 
 - java

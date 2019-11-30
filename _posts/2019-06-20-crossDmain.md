@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[Angular]CORS 이슈"
+title: "[Angular] CORS 이슈"
 date: 2019-06-20 10:00:00
 category: 
 - javascript

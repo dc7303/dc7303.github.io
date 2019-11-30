@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[JS]호이스팅과 스코프"
+title: "[JS] 호이스팅과 스코프"
 date: 2019-08-14 01:00:00
 category:
 - javascript

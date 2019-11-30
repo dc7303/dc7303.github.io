@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[JS]클로저(Closure)"
+title: "[JS] 클로저(Closure)"
 date: 2019-08-15 12:00:00
 category:
 - javascript
