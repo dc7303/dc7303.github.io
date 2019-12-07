@@ -2,7 +2,8 @@
 layout: post
 title: "[GO] 맥OS에서 gvm 설치 그리고 이슈"
 date: 2019-11-29 7:00:00
-category: go
+category: 
+- go
 tag: 
 - go
 comments: true

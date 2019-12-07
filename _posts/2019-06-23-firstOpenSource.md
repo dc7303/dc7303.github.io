@@ -3,9 +3,9 @@ layout: post
 title: "나의 첫 오픈 소스기여"
 date: 2019-06-23 15:00:00
 category:
-- story
+- essay
 tag:
-- story
+- essay
 comments: true
 ---
 

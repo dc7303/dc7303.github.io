@@ -2,7 +2,8 @@
 layout: post
 title: "[Python] 파이썬의 메모리 관리"
 date: 2019-08-06 10:00:00
-category: python
+category: 
+- python
 tag: 
 - python
 - gc

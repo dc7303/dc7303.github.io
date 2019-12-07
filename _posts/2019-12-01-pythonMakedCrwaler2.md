@@ -2,9 +2,12 @@
 layout: post
 title: "[Python] 크롤링으로 업무 자동화하기 - (2)크롬 드라이버 인스턴스 생성"
 date: 2019-12-01 02:00:00
-category: python
+category: 
+- python
 tag: 
 - python
+- selenium
+- chrome
 comments: true
 ---
 

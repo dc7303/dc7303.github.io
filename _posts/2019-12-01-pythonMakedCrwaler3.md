@@ -2,9 +2,12 @@
 layout: post
 title: "[Python] 크롤링으로 업무 자동화하기 - (3)로그인과 다운로드"
 date: 2019-12-02 02:00:00
-category: python
+category: 
+- python
 tag: 
 - python
+- selenium
+- chrome
 comments: true
 ---
 

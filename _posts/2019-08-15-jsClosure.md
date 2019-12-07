@@ -5,7 +5,7 @@ date: 2019-08-15 12:00:00
 category:
 - javascript
 tag:
-- javscript
+- javascript
 comments: true
 ---
 

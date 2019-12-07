@@ -2,9 +2,11 @@
 layout: post
 title: "[Python] 크롤링으로 업무 자동화하기 - (4)파일 비교"
 date: 2019-12-07 02:00:00
-category: python
+category: 
+- python
 tag: 
 - python
+- pandas
 comments: true
 ---
 
