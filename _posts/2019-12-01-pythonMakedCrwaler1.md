@@ -117,4 +117,4 @@ comments: true
 4. 더미 데이터 비교
 5. 파일 비교한 결과 슬랙으로 전송
 
-글이 길어지니 예제는 다음 포스팅에 이어서 작성하겠다.
+예제 코드는 [다음 포스팅](https://dc7303.github.io/python/2019/12/01/pythonMakedCrwaler2/)부터 작성하겠다.

@@ -13,6 +13,8 @@ comments: true
 
 
 ### 들어가기에 앞서
+- 예제 코드는 [pycrawler-exam](https://github.com/dc7303/pycrawler-exam)을 통해 다운로드 받을 수 있다.
+- [[Python] 크롤링으로 업무 자동화하기 - (1)개요](https://dc7303.github.io/python/2019/12/01/pythonMakedCrwaler1/)를 안읽었다면 먼저 읽기를 권한다.
 - 예제는 크롬 버전 78.0.3904.108, 웹 드라이버 버전 [78.0.3904.70](https://chromedriver.storage.googleapis.com/index.html?path=78.0.3904.70/)으로 만들어졌다.
 - 인스턴스 생성 코드는 [chromedriver-boilerplate](https://github.com/dc7303/chromedriver-boilerplate.git) 레파지토리에 보일러 플레이트 코드를 만들어 두었다. 다운로드하여 참고할 수 있다.
 
@@ -303,7 +305,7 @@ chrome = generate_chrome(
     download_path=DOWNLOAD_DIR)
 ```
 
-그리고 정상적으로 생성이 되었는지 테스트를 위해 깃허브 로그인 페이지를 띄워서 테스트한다. 요청은 `get()` 메소드를 사용하고, `time.sleep()`을 통해 일정 시간 프로세스를 정지해준다. 정지하지 않을 경우 프로세스 종료와 함께 크롬이 종료될 것이다.
+그리고 정상적으로 생성이 되었는지 테스트를 위해 깃허브 로그인 페이지를 띄워서 테스트한다. 요청은 `get()` 함수를 사용하고, `time.sleep()`을 통해 일정 시간 프로세스를 정지해준다. 정지하지 않을 경우 프로세스 종료와 함께 크롬이 종료될 것이다.
 
 요청 코드를 추가하면 최종적으로 `main.py`는 아래와 같다.
 
@@ -357,4 +359,4 @@ $ python main.py
 
 위 이미지와 같이 깃허브 로그인 페이지가 띄워지고 종료되었다면 성공이다.
 
-다음 포스팅에서 크롤링을 위한 페이지 분석과 로그인, 그리고 다운로드를 다뤄보겠다.
+[다음 포스팅](https://dc7303.github.io/python/2019/12/02/pythonMakedCrwaler3/)에서 크롤링을 위한 페이지 분석과 로그인, 그리고 다운로드를 다뤄보겠다.

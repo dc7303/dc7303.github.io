@@ -13,6 +13,8 @@ comments: true
 
 
 ### 들어가기에 앞서
+- 예제 코드는 [pycrawler-exam](https://github.com/dc7303/pycrawler-exam)을 통해 다운로드 받을 수 있다.
+- [[Python] 크롤링으로 업무 자동화하기 - (2)크롬 드라이버 인스턴스 생성](https://dc7303.github.io/python/2019/12/01/pythonMakedCrwaler2/)를 안읽었다면 먼저 읽기를 권한다.
 - 예제는 크롬 버전 78.0.3904.108, 웹 드라이버 버전 [78.0.3904.70](https://chromedriver.storage.googleapis.com/index.html?path=78.0.3904.70/)으로 만들어졌다.
 
 ### 페이지 분석
@@ -37,7 +39,7 @@ comments: true
 
 ![webdriverFindElementFunc](/assets/images/post/webdriverFindElementFunc.png){: width="100%"}*\<엘리먼트를 찾는 함수들\>*
 
-아이디와 비밀번호 입력 태그 정보를 보면 아이디는 `id="login_field"`, 비밀번호는 `id="password"`를 포함하고 있다. 이 아이디 속성값으로 찾아보자. `find_element_by_id` 메소드를 사용하여 찾는다.
+아이디와 비밀번호 입력 태그 정보를 보면 아이디는 `id="login_field"`, 비밀번호는 `id="password"`를 포함하고 있다. 이 아이디 속성값으로 찾아보자. `find_element_by_id()` 함수를 사용하여 찾는다.
 
 [이전](https://dc7303.github.io/python/2019/12/01/pythonMakedCrwaler2/)에 작성하던 `main.py`에 이어 작성한다.
 
@@ -70,7 +72,7 @@ elm.send_keys('깃허브 비밀번호')
 
 키 이벤트를 발생시키려면 `from selenium.webdriver.common.keys import Keys`를 추가해주자. `Keys` 클래스 안에는 다양한 키 입력값이 유니코드로 선언되어 있다.
 
-엔터키 `Keys.RETURN`과 로그인 프로세스가 완료되는 걸 기다리기 위해 5초 정도 `time.sleep`한다.
+엔터키 `Keys.RETURN`과 로그인 프로세스가 완료되는 걸 기다리기 위해 5초 정도 `time.sleep()`한다.
 
 ```python
 # main.py
@@ -118,7 +120,7 @@ time.sleep(5)
 
 이미지처럼 원하는 엘리먼트 위에서 마우스 우클릭을 하면 메뉴가 나온다. 여기서 Copy -> Copy XPath를 선택한다.
 
-복사한 값을 `find_element_by_xpath` 함수의 파라미터 값으로 사용하여 엘리먼트를 찾는다.
+복사한 값을 `find_element_by_xpath()` 함수의 파라미터 값으로 사용하여 엘리먼트를 찾는다.
 
 ```python
 # main.py
@@ -128,7 +130,7 @@ time.sleep(5)
 elm = chrome.find_element_by_xpath('//*[@id="js-repo-pjax-container"]/div[2]/div/div[3]/details[2]/summary')
 ```
 
-이렇게 찾은 `Clone or download` 버튼을 클릭해야 한다. 클릭 이벤트는 엘리먼트의 `click` 메소드로 발생시킬 수 있다.
+이렇게 찾은 `Clone or download` 버튼을 클릭해야 한다. 클릭 이벤트는 엘리먼트의 `click()` 함수로 발생시킬 수 있다.
 
 
 ```python
@@ -232,4 +234,4 @@ $ python main.py
 
 코드가 실행되고 브라우저에서 파일 다운로드가 안료 된다. 그리고 프로젝트 내부 download 디렉토리에 파일이 다운로드되었다면 성공이다.
 
-다음 포스팅에서는 다운로드된 zip 파일을 풀고, 데이터를 비교하여 슬랙으로 전송해보겠다.
+[다음 포스팅](https://dc7303.github.io/python/2019/12/02/pythonMakedCrwaler3/)에서는 다운로드된 zip 파일을 풀고, 데이터를 비교를 다루겠다.
