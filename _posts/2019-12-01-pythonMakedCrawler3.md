@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[Python] 크롤링으로 업무 자동화하기 - (3)로그인과 다운로드"
+title: "[Python] 크롤링으로 업무 자동화 - (3)로그인과 다운로드"
 date: 2019-12-02 02:00:00
 category: 
 - python
@@ -17,13 +17,13 @@ comments: true
 
 ### 들어가기에 앞서
 - 예제 코드는 [pycrawler-exam](https://github.com/dc7303/pycrawler-exam)을 통해 다운로드 받을 수 있다.
-- [[Python] 크롤링으로 업무 자동화하기 - (2)크롬 드라이버 인스턴스 생성](https://dc7303.github.io/python/2019/12/01/pythonMakedCrwaler2/)를 안읽었다면 먼저 읽기를 권한다.
+- [[Python] 크롤링으로 업무 자동화 - (2)크롬 드라이버 인스턴스 생성](https://dc7303.github.io/python/2019/12/01/pythonMakedCrawler2/)를 안읽었다면 먼저 읽기를 권한다.
 - 예제는 크롬 버전 78.0.3904.108, 웹 드라이버 버전 [78.0.3904.70](https://chromedriver.storage.googleapis.com/index.html?path=78.0.3904.70/)으로 만들어졌다.
 
 ### 페이지 분석
 로그인하기 전 웹 페이지를 분석해야 한다. 아이디와 비밀번호 값 입력, 버튼 클릭 등 이벤트를 수행하기 위해선 해당 엘리먼트를 찾아야 되기 때문이다.
 
-[이전 포스팅](https://dc7303.github.io/python/2019/12/01/pythonMakedCrwaler2/)에서 접속했던 [깃허브 로그인 페이지](https://github.com/login)로 접속한다. 그리고 크롬 개발자 도구를 열어준다. 보통 단축키는 `F12`키를 입력하면 되고, 안된다면 아래 이미지처럼 더 보기 아이콘 -> 도구 더 보기 -> 개발자 도구 메뉴를 클릭한다.
+[이전 포스팅](https://dc7303.github.io/python/2019/12/01/pythonMakedCrawler2/)에서 접속했던 [깃허브 로그인 페이지](https://github.com/login)로 접속한다. 그리고 크롬 개발자 도구를 열어준다. 보통 단축키는 `F12`키를 입력하면 되고, 안된다면 아래 이미지처럼 더 보기 아이콘 -> 도구 더 보기 -> 개발자 도구 메뉴를 클릭한다.
 
 ![openBrowserDeveloperTool1](/assets/images/post/openBrowserDeveloperTool1.png){: width="100%"}*\<크롬 개발자 도구 열기\>*
 
@@ -44,7 +44,7 @@ comments: true
 
 아이디와 비밀번호 입력 태그 정보를 보면 아이디는 `id="login_field"`, 비밀번호는 `id="password"`를 포함하고 있다. 이 아이디 속성값으로 찾아보자. `find_element_by_id()` 함수를 사용하여 찾는다.
 
-[이전](https://dc7303.github.io/python/2019/12/01/pythonMakedCrwaler2/)에 작성하던 `main.py`에 이어 작성한다.
+[이전](https://dc7303.github.io/python/2019/12/01/pythonMakedCrawler2/)에 작성하던 `main.py`에 이어 작성한다.
 
 
 ```python
@@ -237,4 +237,4 @@ $ python main.py
 
 코드가 실행되고 브라우저에서 파일 다운로드가 안료 된다. 그리고 프로젝트 내부 download 디렉토리에 파일이 다운로드되었다면 성공이다.
 
-[다음 포스팅](https://dc7303.github.io/python/2019/12/02/pythonMakedCrwaler3/)에서는 다운로드된 zip 파일을 풀고, 데이터를 비교를 다루겠다.
+[다음 포스팅](https://dc7303.github.io/python/2019/12/02/pythonMakedCrawler3/)에서는 다운로드된 zip 파일을 풀고, 데이터를 비교를 다루겠다.

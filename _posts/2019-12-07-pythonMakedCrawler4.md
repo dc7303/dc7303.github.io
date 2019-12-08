@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[Python] 크롤링으로 업무 자동화하기 - (4)파일 비교"
+title: "[Python] 크롤링으로 업무 자동화 - (4)파일 비교"
 date: 2019-12-07 02:00:00
 category: 
 - python
@@ -14,12 +14,12 @@ comments: true
 
 ### 들어가기에 앞서
 - 예제 코드는 [pycrawler-exam](https://github.com/dc7303/pycrawler-exam)을 통해 다운로드 받을 수 있다.
-- [[Python] 크롤링으로 업무 자동화하기 - (3)로그인과 다운로드](https://dc7303.github.io/python/2019/12/02/pythonMakedCrwaler3/)를 안읽었다면 먼저 읽기를 권한다.
+- [[Python] 크롤링으로 업무 자동화 - (3)로그인과 다운로드](https://dc7303.github.io/python/2019/12/02/pythonMakedCrawler3/)를 안읽었다면 먼저 읽기를 권한다.
 - 예제는 크롬 버전 78.0.3904.108, 웹 드라이버 버전 [78.0.3904.70](https://chromedriver.storage.googleapis.com/index.html?path=78.0.3904.70/)으로 만들어졌다.
 
 
 ### 압축 풀기
-먼저 [이전 포스팅](https://dc7303.github.io/python/2019/12/02/pythonMakedCrwaler3/)에서 설치된 압축 파일의 압축을 풀어야 한다. 압축 풀기는 파이썬 내장 모듈인 `zipfile`모듈을 사용한다.
+먼저 [이전 포스팅](https://dc7303.github.io/python/2019/12/02/pythonMakedCrawler3/)에서 설치된 압축 파일의 압축을 풀어야 한다. 압축 풀기는 파이썬 내장 모듈인 `zipfile`모듈을 사용한다.
 
 ```python
 # main.py
@@ -41,7 +41,7 @@ if os.path.isfile(zip_file_path):
 
 `os.path.isfile()` 함수를 통해 파일 존재 여부를 확인하고 `extractall()` 함수로 압출을 푼다. 그리고 zip 파일은 더는 필요 없으니 `os.remove()` 함수를 사용하여 제거한다.
 
-![unzipResult](/assets/images/post/pythonMakedCrwaler4-unzipResult.png){: width="100%"}*\<압축 해제 결과\>*
+![unzipResult](/assets/images/post/pythonMakedCrawler4-unzipResult.png){: width="100%"}*\<압축 해제 결과\>*
 
 그러면 필자가 만들어 놓은 더미 데이터들이 셋팅된다. 실제 업무에서 사용될 xlsx 파일의 형태와 디렉토리 구조는 다양할 것이다. 예제는 쉽게 구성했다.
 

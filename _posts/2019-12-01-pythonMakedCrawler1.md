@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[Python] 크롤링으로 업무 자동화하기 - (1)개요"
+title: "[Python] 크롤링으로 업무 자동화 - (1)개요"
 date: 2019-12-01 01:00:00
 category: 
 - python
@@ -120,4 +120,4 @@ comments: true
 4. 더미 데이터 비교
 5. 파일 비교한 결과 슬랙으로 전송
 
-예제 코드는 [다음 포스팅](https://dc7303.github.io/python/2019/12/01/pythonMakedCrwaler2/)부터 작성하겠다.
+예제 코드는 [다음 포스팅](https://dc7303.github.io/python/2019/12/01/pythonMakedCrawler2/)부터 작성하겠다.
