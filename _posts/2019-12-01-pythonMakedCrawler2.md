@@ -17,7 +17,7 @@ comments: true
 
 ### 들어가기에 앞서
 - 예제 코드는 [pycrawler-exam](https://github.com/dc7303/pycrawler-exam)을 통해 다운로드 받을 수 있다.
-- [[Python] 크롤링으로 업무 자동화 - (1)개요](https://dc7303.github.io/python/2019/12/01/pythonMakedCrawler1/)를 안읽었다면 먼저 읽기를 권한다.
+- [[Python] 크롤링으로 업무 자동화 - (1)개요](https://dc7303.github.io/python/essay/2019/12/01/pythonMakedCrawler1/)를 안읽었다면 먼저 읽기를 권한다.
 - 예제는 크롬 버전 78.0.3904.108, 웹 드라이버 버전 [78.0.3904.70](https://chromedriver.storage.googleapis.com/index.html?path=78.0.3904.70/)으로 만들어졌다.
 - 인스턴스 생성 코드는 [chromedriver-boilerplate](https://github.com/dc7303/chromedriver-boilerplate.git) 레파지토리에 보일러 플레이트 코드를 만들어 두었다. 다운로드하여 참고할 수 있다.
 
