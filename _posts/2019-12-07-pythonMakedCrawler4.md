@@ -39,7 +39,7 @@ if os.path.isfile(zip_file_path):
     os.remove(zip_file_path)
 ```
 
-`os.path.isfile()` 함수를 통해 파일 존재 여부를 확인하고 `extractall()` 함수로 압출을 푼다. 그리고 zip 파일은 더는 필요 없으니 `os.remove()` 함수를 사용하여 제거한다.
+`os.path.isfile()` 함수를 통해 파일 존재 여부를 확인하고 `extractall()` 함수로 압축을 푼다. 그리고 zip 파일은 더는 필요 없으니 `os.remove()` 함수를 사용하여 제거한다.
 
 ![unzipResult](/assets/images/post/pythonMakedCrawler4-unzipResult.png){: width="100%"}*\<압축 해제 결과\>*
 
@@ -147,7 +147,7 @@ def get_dir_update_info(before_xlsx_path_list: list, after_xlsx_path_list: list)
     return deleted_file_list, new_file_list
 ```
 
-코드를 보면 경로 파일 경로를 `/`을 기준으로 `split` 한다. 그리고 리스트의 마지막 인덱스를 조회한다. 마지막 인덱스는 파일 이름이 들어가 있다. 파일 이름으로만 되어있는 리스트 `after_file_name_list`와 `before_file_name_list`를 만든다.
+코드를 보면 파일 경로를 `/`을 기준으로 `split` 한다. 그리고 리스트의 마지막 인덱스를 조회한다. 마지막 인덱스는 파일 이름이 들어가 있다. 파일 이름으로만 되어있는 리스트 `after_file_name_list`와 `before_file_name_list`를 만든다.
 
 다음으로 `before_file_name_list`에 존재하고 `after_file_name_list`에 존재하지 않으면 삭제된 파일, 반대로 `after_file_name_list`에 존재하고 `before_file_name_list`에 없으면 새로 생성된 파일로 분류한다.
 
@@ -223,7 +223,7 @@ print(new_file_list)
 #### 판다스
 xlsx을 데이터를 읽고 분석하는데 사용할 라이브러리는 `pandas`다. 판다스는 데이터 분석을 쉽게 할 수 있게 도와주는 라이브러리로 빅데이터, 머신러닝, 딥러닝 분야에 관심이 있다면 한 번쯤 들어봤을 것이다.
 
-판다스를 사용한 이유는 csv, xlsx 데이터를 쉽게 불러오고 다룰 수 있다는 점 때문이다. `openpyxl`과 같은 선택지도 있었지만, 판다스가 두 데이터 프레임을 비교하여 다른 부분을 추출할 때 더 짧은 코드를 작성할 수 있다고 생각했다.
+판다스를 사용한 이유는 csv, xlsx 데이터를 쉽게 불러오고 쉽게 다룰 수 있다는 점 때문이다. `openpyxl`과 같은 선택지도 있었지만, 판다스가 두 데이터 프레임을 비교하여 다른 부분을 추출할 때 더 짧은 코드를 작성할 수 있다고 생각했다.
 
 판다스는 아래 명령어로 설치할 수 있다. 예제 프로젝트에 설치한다.
 
@@ -346,6 +346,7 @@ def get_file_diff_info_list(after_xlsx_path_list: list, before_dir_path: str) ->
 
 ```python
 # xlsxhandler.py
+
 ...
 
 def get_file_diff_info_list(after_xlsx_path_list: list, before_dir_path: str) -> list:
@@ -390,7 +391,7 @@ def get_file_diff_info_list(after_xlsx_path_list: list, before_dir_path: str) ->
     return diff_info_list
 ```
 
-위 코드를 보면 `DataFrame.values.tolist()`로 `DataFrame`을 리스트로 변환하는 것을 볼 수 있다. 
+위 코드를 보면 `DataFrame.values.tolist()`로 `DataFrame`의 데이터를 리스트로 가져오는 것을 볼 수 있다. 
 
 `DataFrame`의 `values` 프로퍼티는 `ndarray` 타입이다. `ndarray`는 넘파이의 핵심인 다차원 행렬 자료구조 클래스다. 구조는 파이썬 리스트와 유사하다. `ndarray`를 `tolist()` 함수로 파이썬 리스트값을 얻을 수 있다.
 
@@ -412,7 +413,7 @@ row 데이터가 배열로 되어 있는걸 볼 수 있다. 이 데이터는 비
 
 추가할 때 `before`에 있던 데이터는 row 앞뒤로 `~`을 더해준다. `~`을 더해주는 것은 추후 슬랙에 내용을 전달할 때 마크다운 역할을 하기 때문이다. (~~이런 식으로 말이다~~)
 
-이렇게 분류한 파일의 변경 리스트를 원하는 메세지 포맷으로 셋팅하여 슬랙으로 전송할 예정이다. 원할 때 이 리스트를 활용하여 메세지를 만들 수 있도록 `models.py`파일을 생성하고 클래스를 추가한다.
+이렇게 분류한 파일의 변경 리스트를 원하는 메세지 포맷으로 셋팅하여 슬랙으로 전송할 예정이다. 원할 때 이 리스트를 활용하여 메세지를 만들 수 있도록 `models.py` 파일을 생성하고 클래스를 추가한다.
 
 ```python
 # models.py
@@ -441,7 +442,7 @@ class FileDiffInfo(object):
         return format_str
 ```
 
-메세지 전송 전 `get_diff_row_format_str()` 함수로 달라진 정보를 가져온다. 근데 이 함수에서 `>`를 스트링값 앞에 추가해주는 걸 볼 수 있다. 슬랙 마크다운 문법이기 때문에 추가했다. 자세한건 슬랙을 다루는 포스팅에서 다루겠다.
+메세지 전송 전 `get_diff_row_format_str()` 함수로 변경된 정보를 메세지 포맷으로 변환하여 가져온다. 근데 이 함수에서 `>`를 스트링값 앞에 추가해주는 걸 볼 수 있다. 슬랙 마크다운 문법이기 때문에 추가했다. 자세한건 슬랙을 다루는 포스팅에서 다루겠다.
 
 클래스를 선언했으니 생성하여 변경된 정보 리스트에 추가 후 리턴하면 최종적으로 `xlsxhandler.py`는 아래 코드가 된다.
 
