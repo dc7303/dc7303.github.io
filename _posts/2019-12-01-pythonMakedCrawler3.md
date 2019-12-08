@@ -237,4 +237,4 @@ $ python main.py
 
 코드가 실행되고 브라우저에서 파일 다운로드가 안료 된다. 그리고 프로젝트 내부 download 디렉토리에 파일이 다운로드되었다면 성공이다.
 
-[다음 포스팅](https://dc7303.github.io/python/2019/12/02/pythonMakedCrawler3/)에서는 다운로드된 zip 파일을 풀고, 데이터를 비교를 다루겠다.
+[다음 포스팅](https://dc7303.github.io/python/2019/12/07/pythonMakedCrawler4/)에서는 다운로드된 zip 파일을 풀고, 데이터를 비교를 다루겠다.
