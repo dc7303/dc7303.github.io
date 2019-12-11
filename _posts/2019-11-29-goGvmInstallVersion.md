@@ -92,8 +92,9 @@ ERROR: Failed to use installed version
 
 ```bash
 $ gvm install go1.10 -B
-$ gvm install go1.10.8
 $ export GOROOT_BOOTSTRAP=$GOROOT
+$ gvm use go1.10
+$ gvm install go1.10.8
 $ gvm use go1.10.8
 ```
 
@@ -101,8 +102,9 @@ $ gvm use go1.10.8
 
 ```bash
 $ gvm install go1.13 -B
-$ gvm install go1.13.4
 $ export GOROOT_BOOTSTRAP=$GOROOT
+$ gvm use go1.13
+$ gvm install go1.13.4
 $ gvm use go1.13.4
 ```
 
