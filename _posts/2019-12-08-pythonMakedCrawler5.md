@@ -488,4 +488,4 @@ def get_file_diff_info_list(after_xlsx_path_list: list, before_dir_path: str) ->
 
 ![resultMsg](/assets/images/post/pythonMakedCrawler5-resultMsg.png){: width="100%"}*\<결과 메세지\>*
 
-성공적이다. 다음 포스팅에서 이 크롤러를 `cron`을 사용하여 알아서 작동하도록 해보자.
+성공적이다. [다음 포스팅](https://dc7303.github.io/python/2019/12/08/pythonMakedCrawler6/)에서 이 크롤러를 `cron`을 사용하여 알아서 작동하도록 해보자.
