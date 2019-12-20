@@ -387,100 +387,73 @@ slack.send_slack_msg(text=result_msg)
 ```
 
 ```python
-# xlsxhandler.py
+# slackhandler.py
 
-import pandas as pd
-from models import FileDiffInfo
-from logger import setup_custom_logger
-
-logger = setup_custom_logger('xlsxhandler')
+from slacker import Slacker
 
 
-def _compare_file_list(compare_list: list, compare_target_list) -> list:
+class Slack(object):
     """
-    두 파일 리스트를 비교하여 다른 파일 정보가 있다면
-    해당 파일 이름을 리스트에 담아 리턴한다.
-
-    :param compare_list: 비교할 리스트
-    :param compare_target_list: 비교 대상 리스트
-    :return: 다른 항목 리스트
+    슬랙 API 핸들링을 위한 객체
+    :param token: 슬랙 API 토큰
+    :param channel: 채널 이름
+    :param username: 전송자 이름
     """
-    result_list = []
-    for name in compare_list:
-        if name not in compare_target_list:
-            result_list.append(name)
+    def __init__(self, token: str, channel: str, username: str):
+        self.slack = Slacker(token)
+        self.channel = channel
+        self.username = username
 
-    return result_list
+    def send_slack_msg(self, text: str = '변경된 내용이 없습니다.'):
+        """
+        슬랙 메세지 전송
+        :param text: 변경 내용
+        """
+        self.slack.chat.post_message(
+            channel=self.channel,
+            username=self.username,
+            text=text)
 
 
-def get_dir_update_info(before_xlsx_path_list: list, after_xlsx_path_list: list) -> (list, list):
+def gen_total_file_update_info_text(deleted_file_list: list, new_file_list: list):
     """
-    이전 파일 리스트와 현재 파일리스트를 비교하여
-    삭제된 파일과 추가된 파일을 파악하여 반환
-
-    :param before_xlsx_path_list: 이전 파일경로 리스트
-    :param after_xlsx_path_list: 업데이트 후 파일경로 리스트
-    :return: 삭제 파일 리스트와 생성된 파일 리스트
+    전체파일 업데이트 정보 텍스트 생성.
+    추가/삭제 된 내용을 텍스트로 가져온다.
+    :param deleted_file_list: 삭제된 파일리스트
+    :param new_file_list: 추가된 파일리스트
     """
-    after_file_name_list = [after.split('/')[-1] for after in after_xlsx_path_list]
-    before_file_name_list = [before.split('/')[-1] for before in before_xlsx_path_list]
-    deleted_file_list = _compare_file_list(before_file_name_list, after_file_name_list)
-    new_file_list = _compare_file_list(after_file_name_list, before_file_name_list)
+    text = '*전체 서비스 명세서 추가/삭제 업데이트 리스트*: \n\n'
 
-    return deleted_file_list, new_file_list
+    if len(deleted_file_list) != 0:
+        for f in deleted_file_list:
+            text += f'>삭제 - {f}'
+        text += '\n'
+
+    if len(new_file_list) != 0:
+        for f in new_file_list:
+            text += f'>추가 - {f}'
+        text += '\n'
+
+    if len(deleted_file_list) == 0 and len(new_file_list) == 0:
+        text += '>추가/삭제 된 파일이 없습니다.'
+
+    return text
 
 
-def get_file_diff_info_list(after_xlsx_path_list: list, before_dir_path: str) -> list:
+def gen_diff_row_info_text(file_diff_info_list: list):
     """
-    파일 시트 다른 부분 정보 리스트 가져오기
-
-    :param after_xlsx_path_list: 최신 서비스명세서 엑셀 파일경로 리스트
-    :param before_dir_path: 읽을 파일 디렉토리 경로
-
-    :return list: 파일 변경된 정보 객체 리스트
+    파일별 ROW에 대한 변경 정보를 텍스트로 생성한다.
+    :param file_diff_info_list: 파일 ROW 다른 정보 리스트
     """
-    diff_info_list = []
-    for xlsx_path in after_xlsx_path_list:
-        # 엑셀파일 읽기
-        try:
-            after_df = pd.read_excel(xlsx_path)
-            file_name = xlsx_path.split('/')[-1]
+    text = '*명세서별 변경된 ROW 정보*: \n\n'
 
-            # 이전 버전 조회
-            before_df = pd.read_excel(f'{before_dir_path}/{file_name}')
-        except FileNotFoundError:
-            continue
+    if len(file_diff_info_list) != 0:
+        for f in file_diff_info_list:
+            text += f'`{f.file_name}`:\n{f.get_diff_row_format_str()}\n'
+    else:
+        text += '>변경된 정보가 없습니다.'
 
-        # 시트 데이터가 같은지 비교 후 같지 않다면 상세 비교
-        if not before_df.equals(after_df):
-            # 두 데이터 다른 부분 추출
-            df = pd.concat([before_df, after_df])
-            duplicates_df = df.drop_duplicates(keep=False)
-
-            before_list = [str(r) for r in before_df.values.tolist()]
-            after_list = [str(r) for r in after_df.values.tolist()]
-
-            # 변경 전 데이터, 변경 후 데이터 분류
-            changed_list = []
-            duplicates_list = [str(r) for r in duplicates_df.values.tolist()]
-            for row in duplicates_list:
-                try:
-                    before_list.index(row)
-                    changed_list.append(f'~{row}~')
-                except ValueError:
-                    pass
-
-                try:
-                    after_list.index(row)
-                    changed_list.append(row)
-                except ValueError:
-                    pass
-
-            # 변경된 정보를 핸들링할 객체 생성
-            info = FileDiffInfo(file_name, changed_list)
-            diff_info_list.append(info)
-
-    return diff_info_list
+    return text
 ```
 
 ### 결과
