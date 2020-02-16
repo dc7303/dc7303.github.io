@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "타입스크립트에 모카 사용하기"
+title: "타입스크립트와 모카 사용하기"
 date: 2020-02-16 02:00:00
 category: 
 - typescript
