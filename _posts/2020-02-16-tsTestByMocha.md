@@ -40,6 +40,7 @@ $ yarn add typescript --dev
     "node_modules",
     "**/*.spec.ts"
   ]
+}
 ```
 
 위 설정은 예제를 위한 간단한 설정값들이다. 타입스크립트 자체를 다루는 글이 아니기 때문에 자세한 설명은 생략한다.  
