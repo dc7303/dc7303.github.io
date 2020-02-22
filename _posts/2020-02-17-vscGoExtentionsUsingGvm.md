@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "VSC GO Extention, gvm 사용할 때 작동 이슈"
+title: "[GO] VSC GO Extention, gvm 사용할 때 작동 이슈"
 date: 2020-02-17 02:00:00
 category: 
 - go
