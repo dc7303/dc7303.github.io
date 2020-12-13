@@ -6,9 +6,8 @@ title: ''
 
 # About Me
 - 안녕하세요. 최동철입니다.
-- 주변에서 Mark라고 부릅니다.
-- 요거트를 너무 좋아해서 Mark + yogurt = margurt가 되었습니다.
-- 현재 CODEF팀 소프트웨어 개발자입니다.
+- 현재 [CODEF](https://codef.io)팀 소프트웨어 개발자입니다.
+- 오픈소스 프로젝트 [Yorkie](https://github.com/yorkie-team)에서 메인테이너로 활동하고 있습니다.
 
 # Life
 - 책읽기를 좋아합니다.
@@ -22,3 +21,4 @@ title: ''
 - 단순 반복적인 업무를 싫어해서 자동화하는 것을 좋아합니다.
 - 해피해킹 키보드 중독자입니다.
 - Vim 또는 Vim plugin을 사용합니다.
+- Go와 Python을 좋아합니다.
